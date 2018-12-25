@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+seed_file = File.join(Rails.root, 'db', 'seeds.yml')
+config = HashWithIndifferentAccess.new(YAML::load_file(seed_file))
+Project.create(config["projects"])
+Todo.create(config["todos"])
